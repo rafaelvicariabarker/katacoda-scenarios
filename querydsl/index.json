@@ -2,12 +2,20 @@
   "title": "QueryDsl",
   "description": "",
   "difficulty": "Beginner",
-  "time": "10 Minutes",
+  "time": "20 Minutes",
   "details": {
     "steps": [
       {
         "title": "Clone the repository https://github.com/EduardKrieger/QueryDslTutorial.git",
         "text": "step1.md"
+      },
+      {
+        "title": "Change pom.xml",
+        "text": "step2.md"
+      },
+      {
+        "title": "Change pom.xml",
+        "text": "step3.md"
       }
     ],
     "intro": {
