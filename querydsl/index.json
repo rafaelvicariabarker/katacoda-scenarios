@@ -2,7 +2,7 @@
   "title": "QueryDsl",
   "description": "",
   "difficulty": "Beginner",
-  "time": "20 Minutes",
+  "time": "45 Minutes",
   "details": {
     "steps": [
       {
@@ -16,6 +16,22 @@
       {
         "title": "Change pom.xml",
         "text": "step3.md"
+      },
+      {
+        "title": "Create a new file",
+        "text": "step5.md"
+      },
+      {
+        "title": "Change FruitRepository",
+        "text": "step6.md"
+      },
+      {
+        "title": "Create a new file",
+        "text": "step7.md"
+      },
+      {
+        "title": "Querydsl Expressions",
+        "text": "step8.md"
       }
     ],
     "intro": {

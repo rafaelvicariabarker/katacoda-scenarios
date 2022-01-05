@@ -30,4 +30,3 @@ Click on 'Copy to Editor' to change it automatically.
                 &lt;/executions&gt;
         &lt;/plugin&gt;</pre>
 
-Render port 8080: https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com/
