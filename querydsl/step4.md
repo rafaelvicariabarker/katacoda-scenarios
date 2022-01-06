@@ -25,13 +25,9 @@ public interface FruitFragment {
 
   public List&lt;Fruit&gt; findByColor(String color);
 
-  public List&lt;Fruit&gt; findAllQueryDslOrigin(String country);
-
   public List&lt;Fruit&gt; findAllQueryDslMaxPriceDesc(Float price);
 
   public List&lt;Fruit&gt; findAllQueryDslMinPriceAsc(Float price);
-
-  public List&lt;Fruit&gt; findAllQueryDslColorCountry(String country, String color);
 
   public List&lt;Fruit&gt; findAllQueryDslPriceRange(Float min, Float max);
 
