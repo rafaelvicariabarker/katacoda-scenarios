@@ -1,29 +1,12 @@
 
 
-If the parent directories aren't already in the project, 'mkdir -p' will create them for you. 
+Now we can implement Querydsl-queries in the `FruitFragmentImpl`. The class requires a JPA `EntityManager` to interact with the persistent entities, which is passed to the `JPAQuery` constructor when instantiating a query.
 
-`mkdir -p /root/devonfw/QueryDslTutorial/src/main/java/org/acme/spring/data/jpa/repo/fruit`{{execute T1}}
+In order to define the `Fruit`-entity as the source of the query, we need to create its Q-type first by accessing its static `fruit` field. Then, we can call `query.from(fruit)`.
 
-Switch to the editor and click 'Copy to Editor'. 
+To retrieve a fruit with a given name, we can use a `where`-clause with the `eq` (equals) operator to get fruits with the name equal to the one passed to the function parameter. Additionally, we can sort the results by name in descending alphabetical order by calling `query.orderBy(fruit.name.desc())` before fetching the result.
 
-'FruitFragmentimpl.java' will be created automatically inside the newly created folder.
-
-<pre class="file" data-filename="devonfw/QueryDslTutorial/src/main/java/org/acme/spring/data/jpa/repo/fruit/FruitFragmentimpl.java">
-package org.acme.spring.data.jpa.repo.fruit;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-
-import org.acme.spring.data.jpa.model.Fruit;
-import org.acme.spring.data.jpa.model.Origin;
-import org.acme.spring.data.jpa.model.QFruit;
-import org.acme.spring.data.jpa.model.QOrigin;
-
-import com.querydsl.jpa.impl.JPAQuery;
-
+&lt;pre&gt;
 public class FruitFragmentImpl implements FruitFragment {
 
   @Inject
@@ -32,98 +15,30 @@ public class FruitFragmentImpl implements FruitFragment {
   @Override
   public List&lt;Fruit&gt; findAllQueryDslName(String name) {
 
-    QFruit fruit = QFruit.fruit;
     JPAQuery&lt;Fruit&gt; query = new JPAQuery&lt;Fruit&gt;(this.em);
+    QFruit fruit = QFruit.fruit;
     query.from(fruit);
     if (name != null &amp;&amp; !name.isEmpty()) {
       query.where(fruit.name.eq(name));
     }
     return query.orderBy(fruit.name.desc()).fetch();
   }
+&lt;/pre&gt;
 
-  @Override
-  public List&lt;Fruit&gt; findByColor(String color) {
+We can also get fruits in a given price range by calling `fruit.price.between(min, max)` in the `where`-clause.
 
-    System.out.println(&#34;Fragment&#34;);
-    QFruit fruit = QFruit.fruit;
-    JPAQuery&lt;Fruit&gt; query = new JPAQuery&lt;Fruit&gt;(this.em);
-    query.from(fruit);
-    if (color != null &amp;&amp; !color.isEmpty()) {
-      query.where(fruit.color.eq(color));
-    }
-    return query.orderBy(fruit.color.desc()).fetch();
-  }
-
-  @Override
-  public List&lt;Fruit&gt; findAllQueryDslOrigin(String country) {
-
-    QOrigin origin = QOrigin.origin;
-    JPAQuery&lt;Origin&gt; query = new JPAQuery&lt;Origin&gt;(this.em);
-    query.from(origin);
-    if (country != null &amp;&amp; !country.isEmpty()) {
-      query.where(origin.countryName.eq(country));
-    }
-    return new ArrayList&lt;&gt;(query.fetchOne().getFruits());
-  }
-
-  @Override
-  public List&lt;Fruit&gt; findAllQueryDslMaxPriceDesc(Float price) {
-
-    QFruit fruit = QFruit.fruit;
-    JPAQuery&lt;Fruit&gt; query = new JPAQuery&lt;Fruit&gt;(this.em);
-    query.from(fruit);
-
-    if (price != null &amp;&amp; price != 0) {
-      query.where(fruit.price.loe(price));
-    }
-    return query.orderBy(fruit.price.desc()).fetch();
-  }
-
-  @Override
-  public List&lt;Fruit&gt; findAllQueryDslMinPriceAsc(Float price) {
-
-    QFruit fruit = QFruit.fruit;
-    JPAQuery&lt;Fruit&gt; query = new JPAQuery&lt;Fruit&gt;(this.em);
-    query.from(fruit);
-
-    if (price != null &amp;&amp; price != 0) {
-      query.where(fruit.price.goe(price));
-    }
-    return query.orderBy(fruit.price.asc()).fetch();
-  }
-
-  @Override
-  public List&lt;Fruit&gt; findAllQueryDslColorCountry(String country, String color) {
-
-    QOrigin origin = QOrigin.origin;
-    QFruit fruit = QFruit.fruit;
-    JPAQuery&lt;Fruit&gt; query = new JPAQuery&lt;&gt;(this.em);
-    // JPAQuery&lt;Origin&gt; query = new JPAQuery&lt;&gt;(this.em);
-    // query.from(origin);
-    query.from(fruit);
-
-    if (color != null &amp;&amp; !color.isEmpty()) {
-      // query.leftJoin(origin.fruits, fruit).on(fruit.origin.eq(origin)).where(origin.countryName.eq(country));
-      query.where(fruit.color.eq(color).and(fruit.origin.countryName.eq(country)));
-    }
-    return new ArrayList&lt;&gt;(query.fetch());// One().getFruits());
-  }
-
+&lt;pre&gt;
   @Override
   public List&lt;Fruit&gt; findAllQueryDslPriceRange(Float min, Float max) {
-
-    QFruit fruit = QFruit.fruit;
-    JPAQuery&lt;Fruit&gt; query = new JPAQuery&lt;Fruit&gt;(this.em);
-    query.from(fruit);
-
+  ...
     if (min != null &amp;&amp; min != 0 &amp;&amp; max != null &amp;&amp; max != 0) {
-      // query.where(fruit.price.goe(min).and(fruit.price.loe(max)));
       query.where(fruit.price.between(min, max));
     }
     return query.orderBy(fruit.price.desc()).fetch();
   }
+&lt;/pre&gt;
 
-}
 
-</pre>
+
+
 

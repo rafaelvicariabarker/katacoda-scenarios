@@ -1,12 +1,2 @@
-[step]
---
-
-changeFile("src/main/java/org/acme/spring/data/jpa/repo/fruit/FruitResource", {"content":"return this.fruitRepository.findAllQueryDslName(name);", "placeholder": "return null;"})
---
-Now you can run the application in development mode.
-[step]
---
-executeCommand("mvn compile quarkus:dev", "mvn compile quarkus:dev")
---
-
-Render port 8080: https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com/
+== Conclusion
+To summarize, we learned how to integrate Querydsl into your Maven project and querying with Querydsl. For more information on queries, visit the Querydsl link:https://querydsl.com/static/querydsl/latest/reference/html_single/[documentation]

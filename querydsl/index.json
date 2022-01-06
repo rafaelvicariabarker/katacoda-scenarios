@@ -1,37 +1,41 @@
 {
-  "title": "QueryDsl",
+  "title": "Querydsl Tutorial",
   "description": "",
   "difficulty": "Beginner",
-  "time": "45 Minutes",
+  "time": "50 Minutes",
   "details": {
     "steps": [
       {
-        "title": "Clone the repository https://github.com/EduardKrieger/QueryDslTutorial.git",
+        "title": "Clone QueryDslTutorial repository",
         "text": "step1.md"
       },
       {
-        "title": "Change pom.xml",
+        "title": "Add Querydsl dependencies to Maven Project",
         "text": "step2.md"
       },
       {
-        "title": "Change pom.xml",
-        "text": "step3.md"
+        "title": "Create FruitFragment Interface",
+        "text": "step4.md"
       },
       {
-        "title": "Create a new file",
+        "title": "Extend FruitRepository with FruitFragment Interface",
         "text": "step5.md"
       },
       {
-        "title": "Change FruitRepository",
+        "title": "Implement FruitFragment Interface",
         "text": "step6.md"
       },
       {
-        "title": "Create a new file",
+        "title": "Querying with Querydsl",
         "text": "step7.md"
       },
       {
-        "title": "Querydsl Expressions",
+        "title": "Create GET-Request in Repository",
         "text": "step8.md"
+      },
+      {
+        "title": "Run Application",
+        "text": "step9.md"
       }
     ],
     "intro": {
