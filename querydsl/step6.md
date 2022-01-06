@@ -40,26 +40,11 @@ public class FruitFragmentImpl implements FruitFragment {
   }
 
   @Override
-  public List&lt;Fruit&gt; findByColor(String color) {
-
-    System.out.println(&#34;Fragment&#34;);
-    QFruit fruit = QFruit.fruit;
-    JPAQuery&lt;Fruit&gt; query = new JPAQuery&lt;Fruit&gt;(this.em);
-    query.from(fruit);
-    if (color != null &amp;&amp; !color.isEmpty()) {
-      query.where(fruit.color.eq(color));
-    }
-    return query.orderBy(fruit.color.desc()).fetch();
-  }
-
-
-  @Override
   public List&lt;Fruit&gt; findAllQueryDslMaxPriceDesc(Float price) {
 
     QFruit fruit = QFruit.fruit;
     JPAQuery&lt;Fruit&gt; query = new JPAQuery&lt;Fruit&gt;(this.em);
     query.from(fruit);
-
     if (price != null &amp;&amp; price != 0) {
       query.where(fruit.price.loe(price));
     }
@@ -72,7 +57,6 @@ public class FruitFragmentImpl implements FruitFragment {
     QFruit fruit = QFruit.fruit;
     JPAQuery&lt;Fruit&gt; query = new JPAQuery&lt;Fruit&gt;(this.em);
     query.from(fruit);
-
     if (price != null &amp;&amp; price != 0) {
       query.where(fruit.price.goe(price));
     }
@@ -85,9 +69,7 @@ public class FruitFragmentImpl implements FruitFragment {
     QFruit fruit = QFruit.fruit;
     JPAQuery&lt;Fruit&gt; query = new JPAQuery&lt;Fruit&gt;(this.em);
     query.from(fruit);
-
     if (min != null &amp;&amp; min != 0 &amp;&amp; max != null &amp;&amp; max != 0) {
-      // query.where(fruit.price.goe(min).and(fruit.price.loe(max)));
       query.where(fruit.price.between(min, max));
     }
     return query.orderBy(fruit.price.desc()).fetch();
