@@ -6,6 +6,8 @@ In order to define the `Fruit`-entity as the source of the query, we need to cre
 
 To retrieve a fruit with a given name, we can use a `where`-clause with the `eq` (equals) operator to get fruits with the name equal to the one passed to the function parameter. Additionally, we can sort the results by name in descending alphabetical order by calling `query.orderBy(fruit.name.desc())` before fetching the result.
 
+[source,java]
+--
 public class FruitFragmentImpl implements FruitFragment {
 
   @Inject
@@ -22,9 +24,11 @@ public class FruitFragmentImpl implements FruitFragment {
     }
     return query.orderBy(fruit.name.desc()).fetch();
   }
-
+--
 We can also get fruits in a given price range by calling `fruit.price.between(min, max)` in the `where`-clause. To see usage of further comparators, see the `findAllQueryDslMaxPriceDesc`and `findAllQueryDslMinPriceAsc` functions.
 
+[source,java]
+--
   @Override
   public List&lt;Fruit&gt; findAllQueryDslPriceRange(Float min, Float max) {
   ...
@@ -33,7 +37,7 @@ We can also get fruits in a given price range by calling `fruit.price.between(mi
     }
     return query.orderBy(fruit.price.desc()).fetch();
   }
-
+--
 
 
 
