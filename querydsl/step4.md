@@ -6,13 +6,13 @@ To extend the application with custom queries in Querydsl, we need to create a F
 
 If the parent directories aren't already in the project, 'mkdir -p' will create them for you. 
 
-`mkdir -p /root/devonfw/QueryDslTutorial/src/main/java/org/acme/spring/data/jpa/repo/fruit`{{execute T1}}
+`mkdir -p /root/devonfw/workspaces/main/QueryDslTutorial/src/main/java/org/acme/spring/data/jpa/repo/fruit`{{execute T1}}
 
 Switch to the editor and click 'Copy to Editor'. 
 
 'FruitFragment.java' will be created automatically inside the newly created folder.
 
-<pre class="file" data-filename="devonfw/QueryDslTutorial/src/main/java/org/acme/spring/data/jpa/repo/fruit/FruitFragment.java">
+<pre class="file" data-filename="devonfw/workspaces/main/QueryDslTutorial/src/main/java/org/acme/spring/data/jpa/repo/fruit/FruitFragment.java">
 package org.acme.spring.data.jpa.repo.fruit;
 
 import java.util.List;

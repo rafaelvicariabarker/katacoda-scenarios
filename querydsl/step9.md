@@ -1,9 +1,9 @@
 Now you can run the application in development mode.
 
 
-Please change the folder to &#39;../../QueryDslTutorial&#39;.
+Please change the folder to &#39;QueryDslTutorial&#39;.
 
-`cd ../../QueryDslTutorial`{{execute T1}}
+`cd QueryDslTutorial`{{execute T1}}
 
 
 Run `mvn compile quarkus:dev` with this command.

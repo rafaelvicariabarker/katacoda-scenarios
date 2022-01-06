@@ -2,13 +2,13 @@
 
 If the parent directories aren't already in the project, 'mkdir -p' will create them for you. 
 
-`mkdir -p /root/devonfw/QueryDslTutorial/src/main/java/org/acme/spring/data/jpa/repo/fruit`{{execute T1}}
+`mkdir -p /root/devonfw/workspaces/main/QueryDslTutorial/src/main/java/org/acme/spring/data/jpa/repo/fruit`{{execute T1}}
 
 Switch to the editor and click 'Copy to Editor'. 
 
 'FruitFragmentImpl.java' will be created automatically inside the newly created folder.
 
-<pre class="file" data-filename="devonfw/QueryDslTutorial/src/main/java/org/acme/spring/data/jpa/repo/fruit/FruitFragmentImpl.java">
+<pre class="file" data-filename="devonfw/workspaces/main/QueryDslTutorial/src/main/java/org/acme/spring/data/jpa/repo/fruit/FruitFragmentImpl.java">
 package org.acme.spring.data.jpa.repo.fruit;
 
 import java.util.ArrayList;
@@ -18,9 +18,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import org.acme.spring.data.jpa.model.Fruit;
-import org.acme.spring.data.jpa.model.Origin;
 import org.acme.spring.data.jpa.model.QFruit;
-import org.acme.spring.data.jpa.model.QOrigin;
 
 import com.querydsl.jpa.impl.JPAQuery;
 
@@ -54,17 +52,6 @@ public class FruitFragmentImpl implements FruitFragment {
     return query.orderBy(fruit.color.desc()).fetch();
   }
 
-  @Override
-  public List&lt;Fruit&gt; findAllQueryDslOrigin(String country) {
-
-    QOrigin origin = QOrigin.origin;
-    JPAQuery&lt;Origin&gt; query = new JPAQuery&lt;Origin&gt;(this.em);
-    query.from(origin);
-    if (country != null &amp;&amp; !country.isEmpty()) {
-      query.where(origin.countryName.eq(country));
-    }
-    return new ArrayList&lt;&gt;(query.fetchOne().getFruits());
-  }
 
   @Override
   public List&lt;Fruit&gt; findAllQueryDslMaxPriceDesc(Float price) {
@@ -90,23 +77,6 @@ public class FruitFragmentImpl implements FruitFragment {
       query.where(fruit.price.goe(price));
     }
     return query.orderBy(fruit.price.asc()).fetch();
-  }
-
-  @Override
-  public List&lt;Fruit&gt; findAllQueryDslColorCountry(String country, String color) {
-
-    QOrigin origin = QOrigin.origin;
-    QFruit fruit = QFruit.fruit;
-    JPAQuery&lt;Fruit&gt; query = new JPAQuery&lt;&gt;(this.em);
-    // JPAQuery&lt;Origin&gt; query = new JPAQuery&lt;&gt;(this.em);
-    // query.from(origin);
-    query.from(fruit);
-
-    if (color != null &amp;&amp; !color.isEmpty()) {
-      // query.leftJoin(origin.fruits, fruit).on(fruit.origin.eq(origin)).where(origin.countryName.eq(country));
-      query.where(fruit.color.eq(color).and(fruit.origin.countryName.eq(country)));
-    }
-    return new ArrayList&lt;&gt;(query.fetch());// One().getFruits());
   }
 
   @Override
