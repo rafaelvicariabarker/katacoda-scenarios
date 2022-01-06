@@ -1,4 +1,4 @@
-The data model consists of a Fruit entity with Id, name, color, origin, and price fields.
+The data model consists of a Fruit entity with Id, name, color, and price fields.
 
 To extend the application with custom queries in Querydsl, we need to create a FruitFragment-interface and its implementation. This will be extended by the FruitRepository along with the CrudRepository.
 

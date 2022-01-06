@@ -25,7 +25,7 @@ public class FruitFragmentImpl implements FruitFragment {
   }
 &lt;/pre&gt;
 
-We can also get fruits in a given price range by calling `fruit.price.between(min, max)` in the `where`-clause.
+We can also get fruits in a given price range by calling `fruit.price.between(min, max)` in the `where`-clause. To see usage of further comparators, see the `findAllQueryDslMaxPriceDesc`and `findAllQueryDslMinPriceAsc` functions.
 
 &lt;pre&gt;
   @Override
